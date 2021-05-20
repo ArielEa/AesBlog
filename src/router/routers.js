@@ -60,6 +60,15 @@ export default [
     }
   },
   {
+    path: '',
+    name: 'java page', // 可以使用定义的默认值，也可以自定义
+    meta: {
+      title: '文档',
+      href: 'http://localhost:9090/test/A',
+      icon: 'ios-book'
+    }
+  },
+  {
     path: '/join',
     name: 'join',
     component: Main,

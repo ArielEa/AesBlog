@@ -1,42 +1,7 @@
 <p align="center">
-    <a href="https://www.iviewui.com">
-        <img width="200" src="https://file.iviewui.com/logo-new.svg">
-    </a>
+  <img width="200" src="https://file.iviewui.com/logo-new.svg">
 </p>
 
-<h1>
-iView Admin
-    <h3>Vue.js 2.0 admin management system template based on iView.</h3>
-</h1>
-
-[![](https://img.shields.io/github/release/iview/iview-admin.svg)](https://github.com/iview/iview-admin/releases)
-[![](https://img.shields.io/travis/iview/iview-admin.svg?style=flat-square)](https://travis-ci.org/iview/iview-admin)
-[![vue](https://img.shields.io/badge/vue-2.5.17-brightgreen.svg?style=flat-square)](https://github.com/vuejs/vue)
-[![iview ui](https://img.shields.io/badge/iview-3.2.2-brightgreen.svg?style=flat-square)](https://github.com/iview/iview)
-[![npm](https://img.shields.io/npm/l/express.svg)]()
-
-<h2 align="center">Special Sponsors</h2>
-<table>
-      <tbody>
-        <tr>
-          <td align="center" valign="middle">
-            <a href="https://segmentfault.com/ls/1650000016424063" target="_blank">
-              <img width="300" src="https://file.iviewui.com/asd/asd-i-2.png">
-            </a>
-          </td>
-          <td align="center" valign="middle">
-            <a href="https://e.coding.net/?utm_source=iview" target="_blank">
-              <img width="300" src="https://file.iviewui.com/asd/asd-coding4.png">
-            </a>
-          </td>
-            <td align="center" valign="middle">
-            <a href="https://cn.udacity.com/fend/?utm_source=iviewui&utm_medium=banner&utm_campaign=fend" target="_blank">
-              <img width="300" src="https://file.iviewui.com/asd/asd-u-new-2.png">
-            </a>
-          </td>
-        </tr>
-      </tbody>
-</table>
 
 > If you'd like be a sponsor, to show your ads in GitHub and iView doc, please email admin@aresn.com to get more infomation.
 
@@ -108,8 +73,3 @@ npm run dev
 ```bush
 npm run build
 ```
-
-## License
-[MIT](http://opensource.org/licenses/MIT)
-
-Copyright (c) 2016-present, iView
