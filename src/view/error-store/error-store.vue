@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Button @click="doTest">213333</Button>
     <Card>
       iview-admin会自动将你程序中的错误收集起来，你可以将错误日志发给后端保存起来。如果你不需要这个功能，将'./src/config/index.js'里的plugin的'error-store'属性删掉即可。
       另外在开发环境下，你程序中的错误都会被收集起来，这样可能不利于你排查错误，你可以将'./src/config/index.js'的'error-store'的'developmentOff'设为true。
@@ -21,6 +22,8 @@
 
 <script>
 import { errorReq } from '@/api/data'
+import { setLoginInfo } from '../api/base'
+
 export default {
   name: 'error_store_page',
   methods: {
@@ -29,6 +32,19 @@ export default {
     },
     ajaxClick () {
       errorReq()
+    },
+    doTest () {
+      const BASE_URL = process.env.NODE_ENV === 'production'
+        ? '/'
+        : '/'
+      console.log(BASE_URL)
+
+      setLoginInfo({
+        userName: 'admin',
+        password: 'admin'
+      }).then(res => {
+        console.log(res)
+      })
     }
   }
 }

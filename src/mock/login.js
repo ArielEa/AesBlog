@@ -1,4 +1,6 @@
 import { getParams } from '@/libs/util'
+import axios from '../libs/api.request'
+
 const USER_MAP = {
   super_admin: {
     name: 'super_admin',
@@ -14,11 +16,29 @@ const USER_MAP = {
     token: 'admin',
     avatar: 'https://avatars0.githubusercontent.com/u/20942571?s=460&v=4'
   }
+  // customer: {
+  //   name: 'customer',
+  //   user_id: '3'
+  // }
 }
 
+/**
+ * 设置登录信息
+ * @param req
+ * @returns {{token}}
+ */
 export const login = req => {
   req = JSON.parse(req.body)
+  console.log(req)
   return { token: USER_MAP[req.userName].token }
+}
+
+export const saveData = (condition) => {
+  return axios.request({
+    url: '/login/login',
+    condition,
+    method: 'get'
+  })
 }
 
 export const getUserInfo = req => {

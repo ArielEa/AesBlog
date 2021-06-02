@@ -17,8 +17,8 @@ export default {
    * @description api请求基础路径
    */
   baseUrl: {
-    dev: 'http://localhost:9090/api',
-    pro: 'http://localhost:9090/api'
+    dev: 'http://localhost:9090/',
+    pro: 'http://localhost:9090/'
   },
   /**
    * @description 默认打开的首页的路由name值，默认为home

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import store from '@/store'
+// axios.defaults.baseURL = 'http://localhost:9090/'
 // import { Spin } from 'iview'
 const addErrorLog = errorInfo => {
   const { statusText, status, request: { responseURL } } = errorInfo
@@ -18,10 +19,14 @@ class HttpRequest {
     this.queue = {}
   }
   getInsideConfig () {
+    // console.log('url:' + this.baseUrl)
+    // axios.defaults.baseURL = this.baseUrl
     const config = {
       baseURL: this.baseUrl,
       headers: {
         //
+        'REQ-TYPE': 'API',
+        'Authorization': 'Bearer'
       }
     }
     return config
