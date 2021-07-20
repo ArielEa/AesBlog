@@ -1,8 +1,6 @@
 import axios from 'axios'
 import store from '@/store'
 import { getToken } from './util'
-// axios.defaults.baseURL = 'http://localhost:9090/'
-// import { Spin } from 'iview'
 const addErrorLog = errorInfo => {
   const { statusText, status, request: { responseURL } } = errorInfo
   let info = {
