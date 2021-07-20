@@ -2,20 +2,20 @@ import { getParams } from '@/libs/util'
 import axios from '../libs/api.request'
 
 const USER_MAP = {
-  super_admin: {
-    name: 'super_admin',
-    user_id: '1',
-    access: ['super_admin', 'admin'],
-    token: 'super_admin',
-    avatar: 'https://file.iviewui.com/dist/a0e88e83800f138b94d2414621bd9704.png'
-  },
-  admin: {
-    name: 'admin',
-    user_id: '2',
-    access: ['admin'],
-    token: 'admin',
-    avatar: 'https://avatars0.githubusercontent.com/u/20942571?s=460&v=4'
-  }
+  // super_admin: {
+  //   name: 'super_admin',
+  //   user_id: '1',
+  //   access: ['super_admin123', 'admin'],
+  //   token: 'super_admin',
+  //   avatar: ''
+  // },
+  // admin: {
+  //   name: 'admin',
+  //   user_id: '2',
+  //   access: ['admin'],
+  //   token: 'admin',
+  //   avatar: ''
+  // }
   // customer: {
   //   name: 'customer',
   //   user_id: '3'
@@ -29,13 +29,12 @@ const USER_MAP = {
  */
 export const login = req => {
   req = JSON.parse(req.body)
-  console.log(req)
-  return { token: USER_MAP[req.userName].token }
+  // return { token: USER_MAP[req.userName].token }
 }
 
 export const saveData = (condition) => {
   return axios.request({
-    url: '/login/login',
+    url: '/api/login/login_in',
     condition,
     method: 'get'
   })
@@ -43,6 +42,7 @@ export const saveData = (condition) => {
 
 export const getUserInfo = req => {
   const params = getParams(req.url)
+  console.log(3)
   return USER_MAP[params.token]
 }
 

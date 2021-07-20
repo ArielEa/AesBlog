@@ -1,5 +1,6 @@
 import axios from 'axios'
 import store from '@/store'
+import { getToken } from './util'
 // axios.defaults.baseURL = 'http://localhost:9090/'
 // import { Spin } from 'iview'
 const addErrorLog = errorInfo => {
@@ -18,24 +19,28 @@ class HttpRequest {
     this.baseUrl = baseUrl
     this.queue = {}
   }
-  getInsideConfig () {
+  getInsideConfig (url) {
     // console.log('url:' + this.baseUrl)
     // axios.defaults.baseURL = this.baseUrl
     const config = {
       baseURL: this.baseUrl,
       headers: {
         //
-        'REQ-TYPE': 'API',
-        'Authorization': 'Bearer'
+        Authorization: getToken(),
+        token: getToken()
       }
     }
+    if (url !== 'login') {
+      config.headers['Authorization'] = 'token' + store.state.user.token
+    }
+    console.log(config)
     return config
   }
   destroy (url) {
     delete this.queue[url]
     if (!Object.keys(this.queue).length) {
       // Spin.hide()
-    }
+    }// 获取头部信息, 后续我要做大量的验证
   }
   interceptors (instance, url) {
     // 请求拦截
@@ -71,7 +76,7 @@ class HttpRequest {
   }
   request (options) {
     const instance = axios.create()
-    options = Object.assign(this.getInsideConfig(), options)
+    options = Object.assign(this.getInsideConfig(options.url), options)
     this.interceptors(instance, options.url)
     return instance(options)
   }

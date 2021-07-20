@@ -64,7 +64,7 @@ export default [
     name: 'java page', // 可以使用定义的默认值，也可以自定义
     meta: {
       title: '文档',
-      href: 'http://localhost:9090/test/A',
+      href: 'http://localhost:9090/api/test/A',
       icon: 'ios-book'
     }
   },

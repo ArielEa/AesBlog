@@ -20,7 +20,9 @@
 <script>
 import TreeSelect from '_c/tree-select'
 import { newTreeData } from '@/mock/data/tree-select'
-import { getTreeSelectData } from '@/api/data'
+import { TestA } from '../../api/base'
+// import tableConfig from '@/config/table'
+
 export default {
   name: 'tree_select_page',
   components: {
@@ -29,14 +31,11 @@ export default {
   data () {
     return {
       treeSelected: [112, 113],
-      treeData: []
+      treeData: [],
+      api: TestA()
     }
   },
   mounted () {
-    getTreeSelectData().then(res => {
-      const { data } = res
-      this.treeData = data
-    })
   },
   methods: {
     changeTreeSelectData () {

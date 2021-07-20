@@ -60,7 +60,7 @@ module.exports = {
     proxy: {
       '^/api': {
         target: 'http://localhost:9090/',
-        changeOrigin: false
+        changeOrigin: true
       }
     }
   },

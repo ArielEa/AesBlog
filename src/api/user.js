@@ -13,13 +13,6 @@ export const login = ({ userName, password }) => {
 }
 
 export const getUserInfo = (token) => {
-  return axios.request({
-    url: 'get_info',
-    params: {
-      token
-    },
-    method: 'get'
-  })
 }
 
 export const logout = (token) => {
@@ -30,17 +23,9 @@ export const logout = (token) => {
 }
 
 export const getUnreadCount = () => {
-  return axios.request({
-    url: 'message/count',
-    method: 'get'
-  })
 }
 
 export const getMessage = () => {
-  return axios.request({
-    url: 'message/init',
-    method: 'get'
-  })
 }
 
 export const getContentByMsgId = msg_id => {

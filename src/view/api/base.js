@@ -6,3 +6,5 @@ export const setLoginInfo = get('/api/dologin/test')
 export const loginIn = get('/api/login/login_in')
 
 export const loginOut = get('/api/login/login_out')
+
+export const TestA = get('/api/test/A')
