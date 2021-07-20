@@ -13,7 +13,7 @@ const resolve = dir => {
 // 需要将它改为'/my-app/'
 // iview-admin线上演示打包路径： https://file.iviewui.com/admin-dist/
 // const isProd = process.env.NODE_ENV === 'production'
-// const BASE_URL = process.env.NODE_ENV === 'production' ? 'http://47.110.155.139:9090/' : '/'
+const BASE_URL = process.env.NODE_ENV === 'production' ? 'http://47.110.155.139:9090/' : '/'
 // console.log("aaaaa:" + isProd)
 // const pluginOptions = {
 //   projectName: 'AesBlog',
@@ -22,6 +22,7 @@ const resolve = dir => {
 // }
 
 module.exports = {
+  baseUrl: BASE_URL,
   // Project deployment base
   // By default we assume your app will be deployed at the root of a domain,
   // e.g. https://www.my-app.com/
@@ -30,7 +31,7 @@ module.exports = {
   // https://www.foobar.com/my-app/
   // then change this to '/my-app/'
   // baseUrl: BASE_URL,
-  // publicPath: './'
+  publicPath: './',
   // tweak internal webpack configuration.
   // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
   // 如果你不需要使用eslint，把lintOnSave设为false即可
