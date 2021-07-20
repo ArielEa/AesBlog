@@ -13,11 +13,11 @@ const resolve = dir => {
 // 需要将它改为'/my-app/'
 // iview-admin线上演示打包路径： https://file.iviewui.com/admin-dist/
 // const isProd = process.env.NODE_ENV === 'production'
-// const BASE_URL = process.env.NODE_ENV === 'production' ? '/' : '/'
-// console.log("aaaaa:" + BASE_URL)
+// const BASE_URL = process.env.NODE_ENV === 'production' ? 'http://47.110.155.139:9090/' : '/'
+// console.log("aaaaa:" + isProd)
 // const pluginOptions = {
-//   projectName: 'Blog',
-//   host: ip.address(),
+//   projectName: 'AesBlog',
+//   host: 'http://47.110.155.139:9090/',
 //   port: 8080
 // }
 
@@ -66,7 +66,6 @@ module.exports = {
   },
   // 设为false打包时不生成.map文件
   productionSourceMap: false
-  // 这里写你调用接口的基础路径，来解决跨域，如果设置了代理，那你本地开发环境的axios的baseUrl要写为 '' ，即空字符串
   // devServer: {
   //   proxy: 'localhost:3000'
   // }
