@@ -74,6 +74,7 @@ export default {
     // 登录
     handleLogin ({ commit }, { userName, password }) {
       userName = userName.trim()
+      console.log(process.env)
       return new Promise((resolve, reject) => {
         loginIn({
           username: userName,
@@ -83,7 +84,6 @@ export default {
           if (data === undefined) {
             return Message.error('失败:' + res.data.SubInfo.SubMessage)
           }
-          console.log(process.env)
           commit('setToken', data.token)
           Message.success('登录成功')
           resolve()
