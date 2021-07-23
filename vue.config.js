@@ -13,7 +13,7 @@ const resolve = dir => {
 // 需要将它改为'/my-app/'
 // iview-admin线上演示打包路径： https://file.iviewui.com/admin-dist/
 // const isProd = process.env.NODE_ENV === 'production'
-const BASE_URL = process.env.NODE_ENV === 'production' ? 'http://47.110.155.139:9090/' : '/'
+const BASE_URL = process.env.NODE_ENV === 'production' ? '/' : '/'
 // console.log("aaaaa:" + isProd)
 // const pluginOptions = {
 //   projectName: 'AesBlog',
