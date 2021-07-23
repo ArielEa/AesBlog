@@ -39,7 +39,7 @@ export default [
     children: [
       {
         path: '/home',
-        name: 'home',
+        name: '首页',
         meta: {
           hideInMenu: true,
           title: '首页',
@@ -50,23 +50,23 @@ export default [
       }
     ]
   },
-  {
-    path: '',
-    name: 'doc',
-    meta: {
-      title: '文档',
-      href: 'https://lison16.github.io/iview-admin-doc/#/',
-      icon: 'ios-book'
-    }
-  },
-  {
-    path: '',
-    name: 'java page', // 可以使用定义的默认值，也可以自定义
-    meta: {
-      title: '文档',
-      icon: 'ios-book'
-    }
-  },
+  // {
+  //   path: '',
+  //   name: 'doc',
+  //   meta: {
+  //     title: '文档',
+  //     href: 'https://lison16.github.io/iview-admin-doc/#/',
+  //     icon: 'ios-book'
+  //   }
+  // },
+  // {
+  //   path: '',
+  //   name: 'java page', // 可以使用定义的默认值，也可以自定义
+  //   meta: {
+  //     title: '文档',
+  //     icon: 'ios-book'
+  //   }
+  // },
   {
     path: '/join',
     name: 'join',
@@ -115,6 +115,15 @@ export default [
     },
     component: Main,
     children: [
+      {
+        path: 'order_buffer_page',
+        name: '订单待处理',
+        meta: {
+          icon: 'md-list',
+          title: '订单待处理'
+        },
+        component: () => import('@/view/orders/index.vue')
+      },
       {
         path: 'tree_select_page',
         name: 'tree_select_page',

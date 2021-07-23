@@ -10,8 +10,7 @@ export default {
   icons_page: 'Custom-icon',
   img_cropper_page: 'Image-editor',
   update: 'Update',
-  doc: 'Document 898789',
-  '6666': '12312312',
+  // doc: 'Document 898789',
   join_page: 'QQ Group 12312312',
   update_table_page: 'Update .CSV',
   update_paste_page: 'Paste Table Data',
@@ -44,5 +43,6 @@ export default {
   tree_table_page: 'Tree Table',
   org_tree_page: 'Org Tree',
   drag_drawer_page: 'Draggable Drawer',
-  tree_select_page: 'Tree Selector'
+  tree_select_page: 'Tree Selector',
+  order_buffer: 'Order Buffer'
 }

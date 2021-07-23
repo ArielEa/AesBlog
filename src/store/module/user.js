@@ -71,10 +71,9 @@ export default {
     messageTrashCount: state => state.messageTrashList.length
   },
   actions: {
-    // 登录
+    // login in
     handleLogin ({ commit }, { userName, password }) {
       userName = userName.trim()
-      console.log(process.env)
       return new Promise((resolve, reject) => {
         loginIn({
           username: userName,
@@ -82,17 +81,17 @@ export default {
         }).then(res => {
           const data = res.data.userInfo
           if (data === undefined) {
-            return Message.error('失败:' + res.data.SubInfo.SubMessage)
+            return Message.error('Error!:' + res.data.SubInfo.SubMessage)
           }
           commit('setToken', data.token)
-          Message.success('登录成功')
+          Message.success('Login Successfully!')
           resolve()
         }).catch(err => {
           reject(err)
         })
       })
     },
-    // 退出登录
+    // login out
     handleLogOut ({ state, commit }) {
       return new Promise((resolve, reject) => {
         // 如果你的退出登录无需请求接口，则可以直接使用下面三行代码而无需使用logout调用接口
@@ -101,7 +100,7 @@ export default {
         resolve()
       })
     },
-    // 获取用户相关信息
+    // Obtaining user information
     getUserInfo ({ state, commit }) {
       return new Promise((resolve, reject) => {
         try {
@@ -119,6 +118,7 @@ export default {
     },
     // 此方法用来获取未读消息条数，接口只返回数值，不返回消息列表
     getUnreadMessageCount ({ state, commit }) {
+      // 后续可能会做
     },
     // 获取消息列表，其中包含未读、已读、回收站三个列表
     getMessageList ({ state, commit }) {

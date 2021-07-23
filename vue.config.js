@@ -13,7 +13,7 @@ const resolve = dir => {
 // 需要将它改为'/my-app/'
 // iview-admin线上演示打包路径： https://file.iviewui.com/admin-dist/
 // const isProd = process.env.NODE_ENV === 'production'
-const BASE_URL = process.env.NODE_ENV === 'production' ? 'http://47.110.155.139:9090/' : '/'
+// const BASE_URL = process.env.NODE_ENV === 'production' ? 'http://47.110.155.139:9090/' : '/'
 // console.log("aaaaa:" + isProd)
 // const pluginOptions = {
 //   projectName: 'AesBlog',
@@ -22,7 +22,7 @@ const BASE_URL = process.env.NODE_ENV === 'production' ? 'http://47.110.155.139:
 // }
 
 module.exports = {
-  baseUrl: BASE_URL,
+  // baseUrl: BASE_URL,
   // Project deployment base
   // By default we assume your app will be deployed at the root of a domain,
   // e.g. https://www.my-app.com/
