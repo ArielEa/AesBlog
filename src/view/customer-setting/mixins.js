@@ -1,7 +1,7 @@
 import _ from 'lodash'
 
 export default {
-  data() {
+  data () {
     return {
       api: null,
       tabs: [{
@@ -30,56 +30,55 @@ export default {
       selectedRows: [] // 已选择的数据
     }
   },
-  mounted() {
+  mounted () {
     let that = this
     that.preFix().then(() => that.initData()).then(() => {}).catch(e => console.log(e))
   },
   methods: {
     // 预处理
-    preFix() {
+    preFix () {
       return Promise.resolve()
     },
-    formatPreFix(v) {
+    formatPreFix (v) {
       return {
         text: v.label,
         value: v.value
       }
     },
     // 初始化数据
-    initData(params = {}, append = false, from) {
+    initData (params = {}, append = false, from) {
       let that = this
       let { pagination, curTab, api, paramElse, hasCount } = this
-      if (!that.loading && (!params.hasCount || from == 'pagination')) {
+      if (!that.loading && (!params.hasCount || from === 'pagination')) {
         that.loading = true
       }
-      if(hasCount && from != 'pagination') {
-        that.pagination.loading = true;
+      if (hasCount && from !== 'pagination') {
+        that.pagination.loading = true
       }
       // let otherFilter = {};
       // otherFilter[this.curTabKey] = curTab;
       let data = _.merge({}, {
         page: pagination.current,
-        limit: pagination.pageSize,
-      }, params, paramElse);
+        limit: pagination.pageSize
+      }, params, paramElse)
 
       data[that.tabsKey] = curTab
 
       if (api && that.auto) {
         return api(data).then(res => {
-          if (res && res.errCode == 0) {
+          if (res && res.errCode === 0) {
             that.apiResponseData = res.payload
             let list = res.payload.dataList || res.payload
             // 列表数据
             list = list.map((v, i) => {
-
               // 默认唯一标识
               if (that.rowKey) {
-                v.RID = 'R-' + v[that.rowKey] //自定义标识
+                v.RID = 'R-' + v[that.rowKey] // 自定义标识
               } else {
                 v.RID = 'R-' + i
               }
 
-              if (typeof v.is_mark == 'number') {
+              if (typeof v.is_mark === 'number') {
                 // 订单标记
                 v.mark = {
                   marked: v.is_mark,
@@ -107,14 +106,14 @@ export default {
 
             // 全部
             that.pagination.total = res.payload.counter || 0
-            that.pagination.loading = hasCount && !data.hasCount;
+            that.pagination.loading = hasCount && !data.hasCount
 
             // 筛选下拉数据
             // if(that.optionsList.length == 0){
             that.optionsList = res.payload.selectBox || []
             // }
             // tabs
-            if (that.tabs.length == 1 && Array.isArray(res.payload.tagList) && res.payload.tagList.length > 0) {
+            if (that.tabs.length === 1 && Array.isArray(res.payload.tagList) && res.payload.tagList.length > 0) {
               that.tabs = res.payload.tagList.map(v => ({
                 title: v.name,
                 key: v.label.key,
@@ -125,7 +124,7 @@ export default {
                 that.curTab = that.tabs[0].name
               } else {
                 console.log('自动匹配tab')
-                that.tabIndex = that.tabs.findIndex(v => v.name == that.curTab)
+                that.tabIndex = that.tabs.findIndex(v => v.name === that.curTab)
                 if (that.tabIndex >= 0 && that.$refs.tabTable) that.$refs.tabTable.active = that.tabIndex
               }
             }
@@ -141,13 +140,13 @@ export default {
       }
     },
     // 表格分页处理
-    handleTableChange(pagination, filters, sorter) {
+    handleTableChange (pagination, filters, sorter) {
       let data = formatFilters(filters, sorter, this.filterKeys, this.searchValue, this.searchFilterKeys)
       this.pagination.current = pagination.current
       this.pagination.pageSize = pagination.pageSize
       this.filters = filters
       this.sorter = sorter
-      if(this.hasCount)data.hasCount = 1;
+      if (this.hasCount)data.hasCount = 1
       this.initData(data, false, 'pagination')
     },
     /**
@@ -155,47 +154,47 @@ export default {
      * value  搜索的值
      * append 列表数据是否叠加(仅选中)
      * */
-    search(value, append, filters, sorter) {
+    search (value, append, filters, sorter) {
       this.searchValue = value
-      let data = formatFilters(filters, sorter, this.filterKeys, value, this.searchFilterKeys);
+      let data = formatFilters(filters, sorter, this.filterKeys, value, this.searchFilterKeys)
       this.pagination.current = 1
       this.saveSelectedRows(append)
       this.initData(data, append, 'search')
     },
     // 保存选中数据
-    saveSelectedRows(state) {
+    saveSelectedRows (state) {
       let that = this
       // 先保存一下已选中的
       if (that.$refs.tabTable && state) {
         let { selected } = that.$refs.tabTable.getSelectedItems()
         that.selectedRows = that.filterRepeat([...that.selectedRows, ...selected])
-        that.$refs.tabTable.setSelectItems(that.selectedRows.map(v => v[that.rowKey]), that.selectedRows);
+        that.$refs.tabTable.setSelectItems(that.selectedRows.map(v => v[that.rowKey]), that.selectedRows)
         console.log(`之前包含${that.selectedRows.length}个选中数据`)
       } else {
         that.selectedRows = []
       }
     },
     // 查找重复数据
-    filterRepeat(array, key = 'id') {
+    filterRepeat (array, key = 'id') {
       let list = []
       array.forEach(v => {
-        if (!list.find(item => item[key] == v[key])) list.push(v)
+        if (!list.find(item => item[key] === v[key])) list.push(v)
       })
       return list
     },
     // 搜索值不变重新加载
-    searchReload(filters, sorter) {
+    searchReload (filters, sorter) {
       let data = formatFilters(filters, sorter, this.filterKeys, this.searchValue, this.searchFilterKeys)
-      if(this.$refs.tabTable && !this.remainSelected)this.$refs.tabTable.setSelectItems([]);
+      if (this.$refs.tabTable && !this.remainSelected) this.$refs.tabTable.setSelectItems([])
       return this.initData(data, false, 'search')
     },
     // 获取当前页面的筛选排序搜索|高级搜索参数
-    getTableParams() {
-      let [ filters, sorter ] = this.$refs.tabTable.getFiltersData();
+    getTableParams () {
+      let [ filters, sorter ] = this.$refs.tabTable.getFiltersData()
       return formatFilters(filters, sorter, this.filterKeys, this.searchValue, this.searchFilterKeys)
     },
     // tab切换重新请求数据
-    tabChange(index) {
+    tabChange (index) {
       this.tabIndex = index
       this.pagination.current = 1
       let _currentTab = this.tabs[index]
@@ -207,7 +206,7 @@ export default {
   },
   computed: {
     // 当前路由的名称(翻译后的)
-    tableTitle() {
+    tableTitle () {
       return this.$t(this.$route.meta.title)
     }
   }

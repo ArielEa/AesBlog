@@ -6,7 +6,7 @@ const permission = {
     encryptPlain: []
   },
   mutations: {},
-  actions:{}
+  actions: {}
 }
 
 export default permission

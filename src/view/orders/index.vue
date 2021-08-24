@@ -37,7 +37,7 @@ export default {
         },
         {
           label: '处理2',
-          value: 'test2',
+          value: 'test2'
         }
       ],
       // 后续需要从接口获取数据
@@ -103,7 +103,7 @@ export default {
     test (value) {
       console.log('test')
     },
-    btnChange(value) {
+    btnChange (value) {
       console.log('这是上级')
       console.log(value)
       let a = { name: 21 }
@@ -112,7 +112,7 @@ export default {
       TestA().then(res => {
         console.log(res)
       })
-    },
+    }
     // initData() {
     //   let { api } = this
     //   api().then(vv => {

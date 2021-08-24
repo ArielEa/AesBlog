@@ -17,7 +17,7 @@ import parentView from '@/components/parent-view'
  * }
  */
 
-export const routes =  [
+export const routes = [
   {
     path: '/login',
     name: 'login',
@@ -134,15 +134,15 @@ export const routes =  [
           title: '树状下拉选择器'
         },
         component: () => import('@/view/components/tree-select/index.vue')
-      },
+      }
     ]
   },
   {
-    path: "/storage",
-    name: "仓储",
+    path: '/storage',
+    name: '仓储',
     meta: {
       icon: 'logo-buffer',
-      title: "仓储"
+      title: '仓储'
     },
     component: Main
   },
