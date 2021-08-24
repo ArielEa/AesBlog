@@ -22,7 +22,6 @@ async function post (url, opts = {}, headers) {
   try {
     result = await instance.post(url, qs.stringify(opts), headers)
   } catch (e) {
-    console.log(e)
     result = e.response || {
       data: null
     }

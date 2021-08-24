@@ -14,6 +14,11 @@ const resolve = dir => {
 // iview-admin线上演示打包路径： https://file.iviewui.com/admin-dist/
 // const isProd = process.env.NODE_ENV === 'production'
 const BASE_URL = process.env.NODE_ENV === 'production' ? '/' : '/'
+// const BASE_URL_COM = {
+//   'development': "http://localhost:8081/",
+//   "production": "http://47.110.155.139"
+// }
+// const BASE_URL = BASE_URL_COM[process.env.NODE_ENV]
 // console.log("aaaaa:" + isProd)
 // const pluginOptions = {
 //   projectName: 'AesBlog',
@@ -30,7 +35,7 @@ module.exports = {
   // sub-path here. For example, if your app is deployed at
   // https://www.foobar.com/my-app/
   // then change this to '/my-app/'
-  // baseUrl: BASE_URL,
+  // baseUrl: "/",
   publicPath: BASE_URL,
   // tweak internal webpack configuration.
   // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md

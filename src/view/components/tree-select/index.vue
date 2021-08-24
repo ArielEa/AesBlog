@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="[readOnly === true ? 'form-onlyRead' : '']">
     <tree-select
         v-model="treeSelected"
         style="width: 300px;"
@@ -32,7 +32,11 @@ export default {
     return {
       treeSelected: [112, 113],
       treeData: [],
-      api: TestA()
+      api: TestA(),
+      readOnly: {
+        type: Boolean,
+        default: false
+      }
     }
   },
   mounted () {
@@ -85,5 +89,7 @@ export default {
 </script>
 
 <style>
-
+.form-onlyRead {
+  pointer-events: none;
+}
 </style>

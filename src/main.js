@@ -19,6 +19,13 @@ import 'v-org-tree/dist/v-org-tree.css'
 /* eslint-disable */
 // if (process.env.NODE_ENV !== 'production') require('@/mock')
 
+import {setCookie,getCookie,delCookie} from'./components/cookies.js'   //引用
+//定义全局变量
+Vue.prototype.$setCookie = setCookie;
+Vue.prototype.$getCookie = getCookie;
+Vue.prototype.$delCookie = delCookie;
+
+
 Vue.use(iView, {
   i18n: (key, value) => i18n.t(key, value)
 })

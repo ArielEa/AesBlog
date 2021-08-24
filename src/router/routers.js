@@ -17,7 +17,7 @@ import parentView from '@/components/parent-view'
  * }
  */
 
-export default [
+export const routes =  [
   {
     path: '/login',
     name: 'login',
@@ -69,9 +69,11 @@ export default [
   // },
   {
     path: '/join',
-    name: 'join',
+    name: '官方',
     component: Main,
     meta: {
+      icon: '_qq',
+      title: '官方',
       hideInBread: true
     },
     children: [
@@ -107,11 +109,11 @@ export default [
     ]
   },
   {
-    path: '/components',
-    name: 'components',
+    path: '/orders',
+    name: '订单',
     meta: {
       icon: 'logo-buffer',
-      title: '组件'
+      title: '订单'
     },
     component: Main,
     children: [
@@ -133,6 +135,26 @@ export default [
         },
         component: () => import('@/view/components/tree-select/index.vue')
       },
+    ]
+  },
+  {
+    path: "/storage",
+    name: "仓储",
+    meta: {
+      icon: 'logo-buffer',
+      title: "仓储"
+    },
+    component: Main
+  },
+  {
+    path: '/components',
+    name: 'components',
+    meta: {
+      icon: 'logo-buffer',
+      title: '组件'
+    },
+    component: Main,
+    children: [
       {
         path: 'count_to_page',
         name: 'count_to_page',
@@ -505,3 +527,5 @@ export default [
     component: () => import('@/view/error-page/404.vue')
   }
 ]
+
+export default routes

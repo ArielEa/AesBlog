@@ -1,40 +1,57 @@
 <template>
   <div>
-    <Tabs type="card" @on-click="TabChange" v-model="defaultTabValue">
-      <TabPane v-for="(tab) in tabs" :value="tab.value" :name="tab.value" :key="tab.label" :label="tab.label"/>
-    </Tabs>
-    <div>
-      <i-button type="primary">退回</i-button>
-    </div>
-    <Table
-      :columns="columns"
-      :data="data1"
-      width="1200px"
-      :loading="indexLoading"/>
+    <TabTable
+      :columns-source="columns"
+      :data-source="data1"
+      :index-loading="indexLoading"
+      :tabs="tabs"
+      :btns="btns"
+      @btnChange="btnChange"
+    />
   </div>
 </template>
 
 <script>
 import { columns } from './index'
+import TabTable from '../customer-setting/TabTable'
+import { TestA } from '../api/base'
+import mixins from '../customer-setting/mixins'
 
 export default {
+  mixins: [mixins],
   data () {
     return {
+      api: TestA,
       columns: columns,
       defaultTabValue: '',
       indexLoading: false,
+      readOnly: {
+        type: Boolean,
+        default: false
+      },
+      btns: [
+        {
+          label: '处理1',
+          value: 'test1',
+          state: 'primary'
+        },
+        {
+          label: '处理2',
+          value: 'test2',
+        }
+      ],
       // 后续需要从接口获取数据
       tabs: [
         {
-          label: '标签一',
+          label: '标签一(1)',
           value: 'tab1'
         },
         {
-          label: '标签二',
+          label: '标签二(2)',
           value: 'tab2'
         },
         {
-          label: '标签三',
+          label: '标签三(3)',
           value: 'tab3'
         }
       ],
@@ -78,19 +95,37 @@ export default {
       ]
     }
   },
-  components: {},
+  components: {
+    TabTable
+  },
   created () {},
   methods: {
     test (value) {
       console.log('test')
     },
-    TabChange (value) {
+    btnChange(value) {
+      console.log('这是上级')
       console.log(value)
-    }
+      let a = { name: 21 }
+      console.log(a.name)
+
+      TestA().then(res => {
+        console.log(res)
+      })
+    },
+    // initData() {
+    //   let { api } = this
+    //   api().then(vv => {
+    //     console.log("这儿请求的")
+    //     console.log(vv.data)
+    //   })
+    // }
   }
 }
 </script>
 
 <style>
-
+.form-onlyRead {
+  pointer-events: none;
+}
 </style>

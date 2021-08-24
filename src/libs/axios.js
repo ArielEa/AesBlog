@@ -25,12 +25,14 @@ class HttpRequest {
       headers: {
         //
         Authorization: getToken(),
-        token: getToken()
+        token: getToken(),
+        project_token: getToken()
       }
     }
     if (url !== 'login') {
       config.headers['Authorization'] = 'token' + store.state.user.token
     }
+    console.log("request : ")
     console.log(config)
     return config
   }
