@@ -144,7 +144,27 @@ export const routes = [
       icon: 'logo-buffer',
       title: '仓储'
     },
-    component: Main
+    component: Main,
+    children: [
+      {
+        path: 'wms_store_list',
+        name: '货主信息',
+        meta: {
+          icon: 'md-list',
+          title: '货主信息'
+        },
+        component: () => import('@/view/wms/index.vue')
+      },
+      {
+        path: 'tree_select_page',
+        name: 'tree_select_page',
+        meta: {
+          icon: 'md-arrow-dropdown-circle',
+          title: '树状下拉选择器'
+        },
+        component: () => import('@/view/components/tree-select/index.vue')
+      }
+    ]
   },
   {
     path: '/components',

@@ -2,6 +2,7 @@ export default {
   home: 'Home',
   login: 'Login',
   orders: 'orders',
+  storage: 'storage',
   components: 'Components',
   count_to_page: 'Count-to',
   tables_page: 'Table',

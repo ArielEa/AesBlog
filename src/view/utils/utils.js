@@ -1,10 +1,8 @@
 /* eslint-disable */
 import XLSX from 'xlsx'
-// import Fingerprint2 from 'Fingerprint2'
+import Fingerprint2 from 'fingerprintjs2'
 import store from '@/store'
 import Vue from 'vue'
-// import { Modal } from 'ant-design-vue'
-// import VueCookies from 'vue-cookies'
 
 export function timeFix () {
   const time = new Date()
@@ -13,7 +11,7 @@ export function timeFix () {
 }
 
 export function welcome () {
-  const arr = ['休息一会儿吧', '准备吃什么呢?', '要不要打一把 DOTA', '我猜你可能累了']
+  const arr = [ 'has a rest time!~' ]
   const index = Math.floor(Math.random() * arr.length)
   return arr[index]
 }
@@ -71,7 +69,8 @@ export function removeLoadingAnimate (id = '', timeout = 1500) {
 // 转换xlsx文件到json
 export function XlsxToJSON (file) {
   return new Promise((resolve, reject) => {
-    var buf; var reader = new FileReader()
+    var buf;
+    var reader = new FileReader()
     reader.readAsBinaryString(file)
     reader.onload = function (e) {
       buf = XLSX.read(e.target.result, { type: 'binary' })

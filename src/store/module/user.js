@@ -8,6 +8,7 @@ import {
 import { setToken, getToken } from '@/libs/util'
 import { loginIn } from '../../view/api/base'
 import { Message } from 'iview'
+import { getSysInfo, findLocalIp, getFinger } from '../../view/utils/utils'
 
 export default {
   state: {
@@ -75,19 +76,30 @@ export default {
     handleLogin ({ commit }, { userName, password }) {
       userName = userName.trim()
       return new Promise((resolve, reject) => {
-        loginIn({
-          username: userName,
-          password: password
-        }).then(res => {
-          const data = res.data.userInfo
-          if (data === undefined) {
-            return Message.error('Error!:' + res.data.SubInfo.SubMessage)
+        initUserAgent().then(initVV => {
+          // 指纹信息采集
+          let condition = {
+            clientDetail: initVV.client_detail, // 浏览器详情
+            clientNo: initVV.client_no, // 设备号
+            internalIp: initVV.internal_ip // 当前本机IP
           }
-          commit('setToken', data.token)
-          Message.success('Login Successfully!')
-          resolve()
-        }).catch(err => {
-          reject(err)
+          loginIn({
+            username: userName,
+            password: password,
+            fingerprint: condition
+          }).then(res => {
+            const data = res.data.userInfo
+            if (data === undefined) {
+              return Message.error('Error!:' + res.data.SubInfo.SubMessage)
+            }
+            commit('setToken', data.token)
+            Message.success('Login Successfully!')
+            resolve()
+          }).catch(err => {
+            reject(err)
+          })
+        }).catch(e => {
+          console.log(e)
         })
       })
     },
@@ -202,4 +214,17 @@ export default {
       })
     }
   }
+}
+
+async function initUserAgent () {
+  let agent = {
+    client_detail: getSysInfo()
+  }
+  try {
+    agent.internal_ip = await findLocalIp()
+    agent.client_no = await getFinger()
+  } catch (e) {
+    console.warn('浏览器信息获取失败')
+  }
+  return agent
 }
